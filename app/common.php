@@ -82,7 +82,7 @@ function call($controller, $action, $parameters = array())
  */
 function hash_password($password)
 {
-    $secure_key = 'O2OMobile_Password_!@#';
+    $secure_key = 'TianjinUniversity_!@#';
     return md5(md5($secure_key) . md5($password));
 }
 
@@ -147,7 +147,7 @@ function fileExt($filename)
  */
 function apiTime($timeString)
 {
-    return strtotime($timeString) < 0 ? '2014-01-01 00:00:00 +0800' : date('Y/m/d H:i:s O', strtotime($timeString));
+    return strtotime($timeString) < 0 ? '2016-01-01 00:00:00 +0800' : date('Y/m/d H:i:s O', strtotime($timeString));
 }
 
 /**
@@ -672,7 +672,7 @@ function send_wx($content = '')
  */
 function dump($var = '')
 {
-    if (Input::get('pass', '') == '2014') {
+    if (Input::get('pass', '') == '2016') {
         if (is_array($var)) {
             print_r($var);
         } else {
