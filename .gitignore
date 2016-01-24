@@ -1,2 +1,4 @@
 *.swp
 *.tmp
+app/storage/*
+bootstrap/start.php
