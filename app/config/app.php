@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'TianjinUniversity',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
