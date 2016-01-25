@@ -55,7 +55,7 @@
 <?php
 /* **********************************************
 
-  File Name: registrationHandler.php
+  File Name: form-demo.php
 
   Author: zhengdongjian@tju.edu.cn
 
