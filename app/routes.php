@@ -49,4 +49,5 @@ Route::group(array('prefix' => '/api'), function(){
 });
 
 //front
-Route::get('/', '\Frontend\IndexController@index');Route::controller('file', '\Frontend\FileController'); //文件上传
+Route::get('/', '\Frontend\IndexController@index');
+Route::controller('file', '\Frontend\FileController'); //文件上传
