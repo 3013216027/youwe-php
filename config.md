@@ -13,6 +13,7 @@
 
 > cd ../sites-enabled/
 > vim \*.conf
+
 ```apache
 <VirtualHost *:80>
 	ServerAdmin dong@localhost
@@ -28,7 +29,9 @@
 </VirtualHost>
 ```
 
+
 3. 配置文件夹权限
+
 > cd /var/www/uv/public
 > mkdir -p uploadFile/avatar uploadFile/voice
 > chmod 777 uploadFile/avatar uploadFile/voice
