@@ -17,7 +17,7 @@ service apache2 restart
 apt-get install php5-mcrypt
 php5enmod mcrypt
 cd ../sites-enabled/
-vim \*.conf
+vim *.conf
 ```
 
 ```apache
