@@ -4,10 +4,9 @@
 > apt-get install apache2 php5 mysql-server libapache2-mod-php5 php5-mysql php5-gd
 
 2. rewrite模块和mcrypt，配置apache2
-	cd /etc/apache2/mods-enabled/
-	ln -s ../mods-avaliable/rewrite.load .
-
-	service apache2 restart
+    cd /etc/apache2/mods-enabled/
+    ln -s ../mods-avaliable/rewrite.load .
+    service apache2 restart
 
 > apt-get install php5-mcrypt
 > php5enmod mcrypt
