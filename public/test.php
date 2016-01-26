@@ -1,4 +1,5 @@
 <?php
-    
-   echo "test";
+
+print_r(phpinfo());
+
 ?>

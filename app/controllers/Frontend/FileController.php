@@ -2,7 +2,6 @@
 
 use \Input;
 use \Redirect;
-use \AdminLog;
 
 class FileController extends \Controller {
     /**
@@ -25,14 +24,10 @@ class FileController extends \Controller {
              $tmpName = $file->getFileName();
              $ext = $file->getClientOriginalExtension();
              $fileName =  md5($tmpName) . uniqid() .'.'. $ext;
-//             $movePath = 'storage/uploads/';
-$movePath = 'uploadFile/uploads/';
+             $movePath = 'storage/uploads/';
              $path = $file->move($movePath, $fileName);
              //
              $output['src'] = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $movePath . $fileName;
-//$output['src'] = 'http://127.0.0.1:8088' . '/' . $movePath . $fileName;
-//$output['src'] = 'http://66.175.220.107:8088' . '/' . $movePath . $fileName;
-AdminLog::log($output['src'],"上传文件");
         }
         else {
             $output['err'] = 1;

@@ -34,15 +34,12 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function()
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
-       //$_SERVER['HTTP_HOST'] = 'http://li515-107.members.linode.com:8088/';
-	   //$_SERVER['HTTP_HOST'] = '66.175.220.107:8088/';
-        $_SERVER['HTTP_HOST'] = '183.78.180.196:8686/';
-
+        $_SERVER['HTTP_HOST'] = 'http://127.0.0.1';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://183.78.180.196:8686/'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
         return 'develop';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://183.78.180.196:8686/'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
         return 'production';
     }
 });

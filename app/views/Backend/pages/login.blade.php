@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="writor" />
     <meta name="author" content="writor.me" />
-    <title>YouWe | 登录</title>
+    <title>O2OMobile | 登录</title>
     <link rel="stylesheet" href="{{asset('backend/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css')}}"  id="style-resource-1">
     <link rel="stylesheet" href="{{asset('backend/css/font-icons/entypo/css/entypo.css')}}"  id="style-resource-2">
     <link rel="stylesheet" href="{{asset('backend/css/bootstrap.min.css')}}"  id="style-resource-4">
@@ -29,7 +29,7 @@
         <div class="login-header login-caret">
             <div class="login-content">
                 <a href="javascript:void(0)" target="_blank" class="logo">
-                    <h1>"YouWe" 管理中心</h1>
+                    <h1>"O2OMobile" 管理中心</h1>
                 </a>
                 <!-- progress bar indicator -->
                 <div class="login-progressbar-indicator">

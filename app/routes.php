@@ -12,6 +12,20 @@ use Illuminate\Support\Facades\Redirect;
 |
 */
 
+//test
+Route::get('test1', function() {
+    return 'test1';
+});
+Route::match(array('GET', 'POST'), 'test2', function() {
+    return 'test2';
+});
+Route::get('user/{id}', function($id) {
+    return 'id = '.$id.'<br/>';
+}) -> where('id', '[0-9]+');
+Route::get('user/{name?}', function($name = null) {
+    return $name.'*';
+});
+
 //admin
 Route::controller('admin/auth', '\Backend\AuthController');
 Route::group(array('prefix' => '/admin', 'before' => 'auth.admin'), function(){
@@ -45,7 +59,6 @@ Route::group(array('prefix' => '/api'), function(){
     Route::controller('withdraw', '\Rest\WithdrawController');  //提现
     Route::controller('servicecategory', '\Rest\ServicecategoryController');  //服务类目
     Route::controller('feedback', '\Rest\FeedbackController');  //意见反馈
-    
 });
 
 //front
