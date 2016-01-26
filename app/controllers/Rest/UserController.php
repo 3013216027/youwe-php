@@ -292,8 +292,7 @@ class UserController extends BaseController {
             'mobile'     => $mobile,
             'nickname'   => $nickname,
             'password'   => $password,
-            //'role'       => User::NEWBEE,
-'role' => User::FREEMAN,
+            'role'       => User::NEWBEE,
             'balance'    => $balance
         );
         if ($location = Input::get('location')) {
@@ -342,7 +341,7 @@ class UserController extends BaseController {
         }
         // 获取短信码
         $verify_code = get_randStr(6, 'NUMBER');
-        $sms_text = sprintf('欢迎加入，您的申请验证码为%s，我们将竭诚为您服务,5分钟有效。', $verify_code);
+        $sms_text = sprintf('欢迎加入O2OMobile，您的申请验证码为%s，我们将竭诚为您服务,5分钟有效。', $verify_code);
         $send_ok = sms_send($mobile, $sms_text);
         if (!$send_ok) {
             return self::error(self::STATUS_BAD_REQUEST, '短信发送失败!');

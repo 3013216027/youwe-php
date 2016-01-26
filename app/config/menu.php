@@ -199,11 +199,11 @@ return array(
 
             // admin/system/msg
 
-            array(
-              'name'   => '数据备份',
-              'url'    => 'admin/system/backup',
-              'permission' => 'system.backup',
-             ),
+            // array(
+            //  'name'   => '数据备份',
+            //  'url'    => 'admin/system/backup',
+            //  'permission' => 'system.backup',
+            // ),
             array(
              'name'   => '操作日志',
              'url'    => 'admin/log/all',

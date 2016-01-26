@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <meta charset='utf-8'> 
@@ -14,6 +13,7 @@
     <div id="wrapper">
       <h1>Internal Server Error!</h1>
       <h2><em>500</em> 服务器内部错误！</h2>
+      <h2>Location: app/views/500.blade.php<h2>
     </div>
   </body>
 </html>

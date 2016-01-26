@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <meta charset='utf-8'> 
@@ -14,6 +13,7 @@
     <div id="wrapper">
       <h1>NOT FOUND!</h1>
       <h2><em>404</em> 内容不存在或已删除！</h2>
+      <h2>Location: app/views/404.blade.php<h2>
     </div>
   </body>
 </html>

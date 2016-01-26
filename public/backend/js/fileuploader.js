@@ -11,10 +11,9 @@
  */
 
 jQuery(document).ready(function(){
-//  var SERVER_HOST = $(".SERVER_HOST").val();
-  var SERVER_HOST = "http://183.78.180.196:8686";
+  var SERVER_HOST = $(".SERVER_HOST").val();
   console.log(SERVER_HOST);
-  var SERVER_HOST = SERVER_HOST || 'http://183.78.180.196:8686/';
+  var SERVER_HOST = SERVER_HOST || 'http://ban.rj-geek.com/';
   $('#model-file-uploader').appendTo('body');
   $('.file-uploader').on('click', function(){
     var _this   = $(this);
@@ -40,9 +39,8 @@ jQuery(document).ready(function(){
         state      = 'pending',
         uploader;
 
-	//log server host
-    	console.log(SERVER_HOST);
-	uploader = WebUploader.create({
+
+    uploader = WebUploader.create({
 
         // 不压缩image
         resize: false,
@@ -58,8 +56,6 @@ jQuery(document).ready(function(){
         accept: options.accept,
     });
 
- console.log(options.accept);
-console.log(SERVER_HOST + '/file/upload?token=45a58e00e28c3831fe04fdf8aae70fd4&type='+options.type);
     function resetModal(){
       picker.attr('disabled', false).show();
       fileList.empty();
