@@ -42,6 +42,7 @@ use \Tender;
 use \Config;
 use \Client;
 use \Service;
+use \AdminLog;
 use \MyService;
 use \ClientSession;
 use \Carbon\Carbon;
@@ -147,5 +148,29 @@ class MyServiceController extends BaseController {
 
     }
 
-
+    /**
+     * 添加某人服务
+     *
+     * @return json
+     * {
+     *  user_id: 用户id
+     *  services_id: 服务id
+     *  result: 操作结果(重复添加/添加成功)
+     *  result_status: 结果状态码，成功0/失败1
+     * }
+     */
+    public function postAdd() {
+        $user_id    = Input::get('uid', '');
+        $services_id = Input::get('services_id', '');
+        $my_services = DB::table('my_services')->where('user_id', '=', $user_id)->where('services_id', '=', $services_id)->get();
+        if(!empty($my_services)){
+            return $this->json(array('user_id' => $user_id, 'services_id' => $services_id, 'result' => '重复添加', 'result_status' => 1));
+        }
+        $myservice = new MyService;
+        $myservice->user_id           = $user_id;
+        $myservice->services_id       = $services_id;
+        $myservice->save();
+        AdminLog::log($myservice->id, "添加“".User::userinfo($myservice->user_id)."”的认证");
+        return $this->json(array('user_id' => $user_id, 'services_id' => $services_id, 'result' => '添加成功', 'result_status' => 0));
+    }
 }
