@@ -1,3 +1,4 @@
 *.swp
 *.tmp
 public/phpmyadmin/*
+.idea/*
