@@ -56,7 +56,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
             'database'  => 'api_o2omobile_com_cn',
-            'username'  => 'dong',
+            'username'  => 'uv',
             'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
