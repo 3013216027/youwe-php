@@ -2,4 +2,3 @@
 
 print_r(phpinfo());
 
-?>
