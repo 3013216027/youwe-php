@@ -589,7 +589,7 @@ class UserController extends BaseController {
                 $myservice->user_id = $user->id;
                 $myservice->services_id = $sid;
                 $myservice->save();
-                AdminLog::log($myservice->id, "添加“".User::userinfo($myservice->user_id)."”的话题");
+                AdminLog::log($myservice->id, '添加“'.User::userinfo($myservice->user_id).'”的话题');
             }
             return $this->json(array('message' => '添加话题成功！', 'result' => 0));
         }
@@ -604,7 +604,7 @@ class UserController extends BaseController {
                 }
                 DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->delete();
                 $myservices = new MyService;
-                AdminLog::log($myservice->id, '删除“'.User::userinfo($user->id)."”的话题");
+                AdminLog::log($myservice->id, '删除“'.User::userinfo($user->id).'”的话题');
             }
             return $this->json(array('message' => '删除成功！', 'result' => 0));
         }
