@@ -42,6 +42,7 @@ use \Config;
 use \Client;
 use \Withdraw;
 use \Message;
+use \AdminLog;
 use \ClientSession;
 use \Applyservice;
 use \UserCertity;
@@ -57,6 +58,8 @@ class UserController extends BaseController {
     const ERROR_MOBILE_REPREAT    = 7;   // 用户名已经存在（注册）
     const ERROR_NICKNAME_REPREAT  = 10;  // 昵称已经存在（注册）
     const ERROR_CERTITY_REPREAT   = 11;  // 已经申请自由人
+    const ERROR_SERVICE_FLAG_EMPTY = 27; // 提供了服务id但未指定增删动作
+    const ERROR_SERVICE_FLAG_ERROR = 59; // 错误的修改动作
 
     /**
      * 用户详情
@@ -534,12 +537,12 @@ class UserController extends BaseController {
         $nickname = trim(Input::get('nickname', ''));
         $signature = trim(Input::get('signature', ''));
         $brief = trim(Input::get('brief', ''));
-        if (empty($nickname) && empty($signature) && empty($brief)) {
+        $services = trim(Input::get('service_type', ''));
+        if (empty($nickname) && empty($signature) && empty($brief) && empty($services)) {
             return self::error(self::STATUS_BAD_REQUEST, '请求参数错误');
         }
 
         $user = $this->currentUser;
-        //
         if (!empty($nickname)) {
             $res = User::where('nickname', $nickname)->first();
             if ($res) {
@@ -553,9 +556,62 @@ class UserController extends BaseController {
         if (!empty($brief)) {
             $user->brief = $brief;
         }
+        if (!empty($services)) {
+            postChangeService($services);
+        }
         //save to database
         $user->save();
         return $this->json(array('user' => $user->formatToApi()));
+    }
+    /**
+     * 修改用户感兴趣的话题
+     * @parm services: array
+     * @return json
+     */
+    public function postChangeService($services)
+    {
+        $user = $this->currentUser;
+        $flag = trim(Input::get('flag', ''));
+        if (empty($flag))
+        {
+            return self::error(self::ERROR_SERVICE_FLAG_EMPTY, '未指定对话题参数的动作(添加or删除?)');
+        }
+        else if ($flag == 1)
+        {
+            /* add */
+            foreach($services as $sid)
+            {
+                if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
+                {
+                    return $this->json(array('message' => '重复添加 '.$sid.'！', 'result' => 1));
+                }
+                $myservice = new MyService;
+                $myservice->user_id = $user->id;
+                $myservice->services_id = $sid;
+                $myservice->save();
+                AdminLog::log($myservice->id, "添加“".User::userinfo($myservice->user_id)."”的话题");
+            }
+            return $this->json(array('message' => '添加话题成功！', 'result' => 0));
+        }
+        else if ($flag == 2)
+        {
+            /* remove */
+            foreach($services as $sid)
+            {
+                if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
+                {
+                    return $this->json(array('message' => '欲删除的话题 '.$sid.'不存在！', 'result' => 1));
+                }
+                DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->delete();
+                $myservices = new MyService;
+                AdminLog::log($myservice->id, '删除“'.User::userinfo($user->id)."”的话题");
+            }
+            return $this->json(array('message' => '删除成功！', 'result' => 0));
+        }
+        else
+        {
+            return self::error(self::ERROR_SERVICE_FLAG_ERROR, '未知的话题修改动作');
+        }
     }
 
     /**
