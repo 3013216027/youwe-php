@@ -55,9 +55,9 @@ class UserController extends BaseController {
     //错误码
     const ERROR_MOBILE_NOT_EXISTS = 3;  //手机号不存在
     const ERROR_PASSWD_ERROR      = 6;   // 密码错误
-    const ERROR_MOBILE_REPREAT    = 7;   // 用户名已经存在（注册）
-    const ERROR_NICKNAME_REPREAT  = 10;  // 昵称已经存在（注册）
-    const ERROR_CERTITY_REPREAT   = 11;  // 已经申请自由人
+    const ERROR_MOBILE_REPEAT    = 7;   // 用户名已经存在（注册）
+    const ERROR_NICKNAME_REPEAT  = 10;  // 昵称已经存在（注册）
+    const ERROR_CERTITY_REPEAT   = 11;  // 已经申请自由人
     const ERROR_SERVICE_FLAG_EMPTY = 27; // 提供了服务id但未指定增删动作
     const ERROR_SERVICE_FLAG_ERROR = 59; // 错误的修改动作
 
@@ -267,11 +267,11 @@ class UserController extends BaseController {
 
         // 检查昵称重复
         if (User::where('nickname', $nickname)->first()) {
-            return self::error(self::ERROR_NICKNAME_REPREAT, '昵称已经存在');
+            return self::error(self::ERROR_NICKNAME_REPEAT, '昵称已经存在');
         }
         // 检查手机号重复
         if (User::where('mobile', $mobile)->first()) {
-            return self::error(self::ERROR_MOBILE_REPREAT, '手机号码已经存在');
+            return self::error(self::ERROR_MOBILE_REPEAT, '手机号码已经存在');
         }
         //检查邀请码
         if (!empty($invite_code)) {
@@ -340,7 +340,7 @@ class UserController extends BaseController {
         // 检查手机号
         $mobile   = trim(Input::get('mobile_phone'));
         if (User::where('mobile', $mobile)->first()) {
-            return self::error(self::ERROR_MOBILE_REPREAT, '手机号码已经存在');
+            return self::error(self::ERROR_MOBILE_REPEAT, '手机号码已经存在');
         }
         // 获取短信码
         $verify_code = get_randStr(6, 'NUMBER');
@@ -462,7 +462,7 @@ class UserController extends BaseController {
         $uid = $this->currentUser->id;
         $user = User::findOrFail($uid);
         if ($user->role == User::FREEMAN_INREVIEW || $user->role == User::FREEMAN) {
-            return self::error(self::ERROR_CERTITY_REPREAT, '您已经申请过了');
+            return self::error(self::ERROR_CERTITY_REPEAT, '您已经申请过了');
         }
 
         //处理上传头像
@@ -546,7 +546,7 @@ class UserController extends BaseController {
         if (!empty($nickname)) {
             $res = User::where('nickname', $nickname)->first();
             if ($res) {
-                return self::error(self::ERROR_NICKNAME_REPREAT, '昵称已经存在');
+                return self::error(self::ERROR_NICKNAME_REPEAT, '昵称已经存在');
             }
             $user->nickname = $nickname;
         }
