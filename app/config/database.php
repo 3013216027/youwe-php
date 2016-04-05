@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-            'database'  => 'api_o2omobile_com_cn',
-            'username'  => 'uv',
-            'password'  => '',
+			'database'  => 'api_o2omobile_com_cn',
+			'username'  => 'uv',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'o2omobile_',
