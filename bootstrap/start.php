@@ -34,12 +34,12 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function()
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
-        $_SERVER['HTTP_HOST'] = 'http://127.0.0.1';
+        $_SERVER['HTTP_HOST'] = 'dev.o2omobile.cn';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('dev.o2omobile.com'))) {
         return 'develop';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('demo.o2omobile.com'))) {
         return 'production';
     }
 });
