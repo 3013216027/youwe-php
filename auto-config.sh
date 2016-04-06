@@ -76,7 +76,7 @@ ln -s ../sites-avaliable/$conf .
 # configurate the access for some directorys
 cd $documentRoot
 mkdir -p public/uploadFile/avatar public/uploadFile/voice
-chmod 777 public/uploadFile/avatar public/uploadFile/voice
+chmod -R 777 public/uploadFile/avatar public/uploadFile/voice
 chmod -R 777 app/storage
 
 read -p 'Now, please modify the configuration file with your mysql database user and password. Press any key to continue...'
