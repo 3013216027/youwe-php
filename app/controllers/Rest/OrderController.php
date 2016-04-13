@@ -100,8 +100,8 @@ class OrderController extends BaseController {
         $order->lon                 = Input::get('location.lon', '');   //经度
         $order->lat                 = Input::get('location.lat', '');   //纬度
         $order->appointment_time    = Input::get('start_time', ''); //预约时间
-        $order->offer_price         = Input::get('offer_price', '0');  //约定价格
-        $order->transaction_price   = Input::get('offer_price', '0');  //最终成交价  暂时 ＝ 预定价格
+        $order->offer_price         = Input::get('offer_price', '');  //约定价格
+        $order->transaction_price   = Input::get('offer_price', '');  //最终成交价  暂时 ＝ 预定价格
         $order->service_type        = Input::get('service_type_id', '');
 
         $order->location = json_encode(Input::get('location', array()));
@@ -141,7 +141,7 @@ class OrderController extends BaseController {
             $user = User::find($order->employer);
             $messages = array(
                 'user_id'   =>  $order->default_receiver_id,   
-                'content'   =>  '“'.$user->nickname.'”请求你帮忙',
+                'content'   =>  '“'.$user->nickname.'”邀请你参加活动',
                 'type'      =>  Message::ORDER,
                 'order_id'  =>  $order->id,
                 'is_readed' =>  Message::IS_NOT_READED,

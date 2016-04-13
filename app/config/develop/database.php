@@ -21,11 +21,11 @@ return array(
     'connections' => array(
 
         'mysql' => array(
-            'host'      => 'MYSQL_HOST',
+            'host'      => '127.0.0.1',
             'database'  => 'api_o2omobile_com_cn',
-            'username'  => 'MYSQL_USER',
-            'password'  => 'MYSQL_PASS',
-            'prefix'    => 'MYSQL_PREFIX',
+            'username'  => 'root',
+            'password'  => '19940624li',
+            'prefix'    => 'o2omobile_',
         ),
     ),
 

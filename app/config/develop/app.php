@@ -1,6 +1,6 @@
 <?php
 
 return array(
-    'url' => 'http://dev.o2omobile.com.cn/',
-     'debug'	=> true,
+    'url' => '104.255.221.27',
+    'debug'	=> true,
 );

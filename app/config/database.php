@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-            'database'  => 'api_o2omobile_com_cn',
-            'username'  => 'uv',
-            'password'  => '',
+			'host'      => '127.0.0.1',
+			'database'  => 'api_o2omobile_com_cn',
+			'username'  => 'root',
+			'password'  => '19940624li',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => 'o2omobile_',

@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="O2OMobile管理中心" />
+  <meta name="description" content="YouWe管理中心" />
   <meta name="author" content="Joy" />
-  <title>O2OMobile管理中心</title>
+  <title>YouWe管理中心</title>
   <link rel="stylesheet" href="{{ asset('/backend/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}" >
   <link rel="stylesheet" href="{{ asset('/backend/css/font-icons/entypo/css/entypo.css') }}" >
   <link rel="stylesheet" href="{{ asset('/backend/css/bootstrap.min.css') }}">
@@ -32,7 +32,7 @@
         <!-- logo -->
         <div class="logo">
           <a href="{{url('admin')}}">
-            <h1>O2OMobile</h1>
+            <h1>YouWe</h1>
           </a>
         </div>
         <!-- logo collapse icon -->

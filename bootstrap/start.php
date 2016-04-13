@@ -34,12 +34,12 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(function()
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
-        $_SERVER['HTTP_HOST'] = 'http://127.0.0.1';
+        $_SERVER['HTTP_HOST'] = '104.255.221.27';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('104.255.221.27'))) {
         return 'develop';
     }
-    if (in_array($_SERVER['HTTP_HOST'], array('http://127.0.0.1'))) {
+    if (in_array($_SERVER['HTTP_HOST'], array('104.255.221.27'))) {
         return 'production';
     }
 });

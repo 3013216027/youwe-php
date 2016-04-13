@@ -2,6 +2,7 @@
 
 use \Input;
 use \Redirect;
+use \AdminLog;
 
 class FileController extends \Controller {
     /**
