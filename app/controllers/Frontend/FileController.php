@@ -2,6 +2,7 @@
 
 use \Input;
 use \Redirect;
+use \AdminLog;
 
 class FileController extends \Controller {
     /**
@@ -17,7 +18,7 @@ class FileController extends \Controller {
             throw new Exception("非法访问！", 1);
         }*/
 
-        $output = array('err' => 0, 'msg' => 'flag_upload', 'src' => '');
+        $output = array('err' => 0, 'msg' => '', 'src' => '');
 
         $file = Input::file('file');
         if ($file) {

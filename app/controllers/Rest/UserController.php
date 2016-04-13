@@ -97,7 +97,7 @@ class UserController extends BaseController {
         $offset          = '';
         $hasMore         = 0;
         $total           = 0;
-         $orderWhere = '`M`.services_id = '.$service_type.' AND `M`.user_id = `U`.id AND `U`.`role` = '.User::FREEMAN .' AND `U`.`status` = '.User::STATUS_OK ;        
+        $orderWhere = '`M`.services_id = '.$service_type.' AND `M`.user_id = `U`.id AND `U`.`status` = '.User::STATUS_OK ;        
         //按页码分页
         if (Input::has('by_no')) {
             $page = abs(Input::get('by_no', 1));
@@ -344,7 +344,7 @@ class UserController extends BaseController {
         }
         // 获取短信码
         $verify_code = get_randStr(6, 'NUMBER');
-        $sms_text = sprintf('欢迎加入O2OMobile，您的申请验证码为%s，我们将竭诚为您服务,5分钟有效。', $verify_code);
+        $sms_text = sprintf('欢迎加入YouWe，您的申请验证码为%s，我们将竭诚为您服务,5分钟有效。', $verify_code);
         $send_ok = sms_send($mobile, $sms_text);
         if (!$send_ok) {
             return self::error(self::STATUS_BAD_REQUEST, '短信发送失败!');
@@ -564,6 +564,50 @@ class UserController extends BaseController {
         return $this->json(array('user' => $user->formatToApi()));
     }
     /**
+     * 添加感兴趣的话题
+     * @parm services: array
+     * @return json
+     */
+    public function postAddService($services)
+    {
+        $user = $this->currentUser;
+        //$flag = trim(Input::get('flag'));
+        foreach($services as $sid)
+        {
+            if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
+            {
+                return $this->json(array('message' => '重复添加 '.$sid.'！', 'result' => 1));
+            }
+            $myservice = new MyService;
+            $myservice->user_id = $user->id;
+            $myservice->services_id = $sid;
+            $myservice->save();
+            AdminLog::log($myservice->id, '添加“'.User::userinfo($myservice->user_id).'”的话题');
+        }
+        return $this->json(array('message' => '添加话题成功！', 'result' => 0));
+    }
+    /**
+     * 删除感兴趣的话题
+     * @parm services: array
+     * @return json
+     */
+    public function postRemoveService($services)
+    {
+        $user = $this->currentUser;
+        //$flag = trim(Input::get('flag'));
+        foreach($services as $sid)
+        {
+            if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
+            {
+                return $this->json(array('message' => '欲删除的话题 '.$sid.'不存在！', 'result' => 1));
+            }
+            DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->delete();
+            $myservices = new MyService;
+            AdminLog::log($myservice->id, '删除“'.User::userinfo($user->id).'”的话题');
+        }
+        return $this->json(array('message' => '删除成功！', 'result' => 0));
+    }
+    /**
      * 修改用户感兴趣的话题
      * @parm services: array
      * @return json
@@ -579,34 +623,12 @@ class UserController extends BaseController {
         else if ($flag == 1)
         {
             /* add */
-            foreach($services as $sid)
-            {
-                if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
-                {
-                    return $this->json(array('message' => '重复添加 '.$sid.'！', 'result' => 1));
-                }
-                $myservice = new MyService;
-                $myservice->user_id = $user->id;
-                $myservice->services_id = $sid;
-                $myservice->save();
-                AdminLog::log($myservice->id, '添加“'.User::userinfo($myservice->user_id).'”的话题');
-            }
-            return $this->json(array('message' => '添加话题成功！', 'result' => 0));
+            postAddService($services);
         }
         else if ($flag == 2)
         {
             /* remove */
-            foreach($services as $sid)
-            {
-                if (!empty(DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->get()))
-                {
-                    return $this->json(array('message' => '欲删除的话题 '.$sid.'不存在！', 'result' => 1));
-                }
-                DB::table('my_services')->where('user_id', '=', $user->id)->where('services_id', '=', $sid)->delete();
-                $myservices = new MyService;
-                AdminLog::log($myservice->id, '删除“'.User::userinfo($user->id).'”的话题');
-            }
-            return $this->json(array('message' => '删除成功！', 'result' => 0));
+            postRemoveService($services);
         }
         else
         {

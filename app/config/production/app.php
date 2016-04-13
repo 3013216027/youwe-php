@@ -4,7 +4,7 @@
 return array(
 
     //不能带后面的 "/"
-    'url'	=> 'http://demo.o2omobile.com.cn/',
+    'url'	=> '104.255.221.27',
     'debug'	=> true,
 
 );

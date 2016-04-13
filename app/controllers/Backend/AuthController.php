@@ -39,6 +39,7 @@ use \User;
 use \Input;
 use \Response;
 use \Redirect;
+//use \AdminLog;
 
 class AuthController extends BaseController {
     /**
@@ -67,10 +68,12 @@ class AuthController extends BaseController {
      */
     public function postLogin()
     {
-        $user = array(
-            'username' => Input::get('username'),
-            'password'   => Input::get('password'),
-        );
+	    $user = array(
+		    'username' => Input::get('username'),
+		    'password'   => Input::get('password'),
+	    );
+	    //AdminLog::log(Input::get('username'), Input::get('password'));
+
         /*if (filter_var($username = Input::get('username'), FILTER_VALIDATE_EMAIL)) {
             $user['email'] = Input::get('username');
             unset($user['username']);
