@@ -1,8 +1,6 @@
-## You-We APP server side
-
+## You-We APP server side [![Build Status](https://travis-ci.org/3013216027/youwe-php.svg)](https://travis-ci.org/3013216027/youwe-php)
 - **Based on [Larvel Framework](https://laravel.com/) and [O2Omobile](https://github.com/GeekZooStudio/O2OMobile\_PHP)**
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 
 ### Install & Configurate
 
